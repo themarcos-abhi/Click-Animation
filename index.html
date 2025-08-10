@@ -1,13 +1,71 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>Click Animation</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .circle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pop 0.6s ease-out forwards;
+    }
+    h1{
+        font-family: cursive;
+        color: antiquewhite;
+        display: inline;
+        text-align: center;
+
+    }
+    h4{
+        color: aqua;
+    }
+    @keyframes pop {
+      0% {
+        transform: scale(0.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
 <body>
+    <hr>
+    <h1>Click Animation With the help of JavaScript. </h1>
+    <hr>
+    <br> 
+    <h4>Click any where on the page to see the result.</h4>
+  <script>
+    document.addEventListener('click', function(e) {
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
 
-<h2>Random String Generator</h2>
+      
+      circle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
-<script>
-  let str = Math.random().toString(36).substring(2, 10);
-  console.log("Random String:", str);
-</script>
+      
+      circle.style.left = `${e.clientX - 10}px`;
+      circle.style.top = `${e.clientY - 10}px`;
 
+      document.body.appendChild(circle);
+
+    
+      setTimeout(() => {
+        circle.remove();
+      }, 600);
+    });
+  </script>
 </body>
 </html>
